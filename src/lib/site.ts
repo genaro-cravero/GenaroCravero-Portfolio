@@ -6,13 +6,6 @@ export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ?? fallbackUrl
 ).replace(/\/+$/, "");
 
-export const siteConfig = {
-  name: profile.name,
-  role: profile.role,
-  description: profile.description,
-  url: siteUrl,
-};
-
 export const ogImage = {
   url: "/opengraph-image",
   width: 1200,
@@ -27,7 +20,3 @@ export const navigation = [
   { label: "Experience", href: "/#experience" },
   { label: "Contact", href: "/#contact" },
 ];
-
-export function absoluteUrl(path = "/") {
-  return new URL(path, siteUrl).toString();
-}
