@@ -1,7 +1,7 @@
 # Spec 02 — Contenido
 
 > Estado: vigente. Fuente de verdad del modelo de datos y del workflow de edición.
-> Última actualización: 2026-11-04.
+> Última actualización: 2026-11-05.
 
 ## 1. Principios
 
@@ -33,6 +33,7 @@ Los selectores y el orden viven en `src/lib/projects.ts`, `src/lib/format.ts` y 
 | --- | --- | --- | --- |
 | `name` | `string` | Sí | Nombre completo. |
 | `role` | `string` | Sí | Rol profesional corto. |
+| `tagline` | `string` | Sí | Propuesta breve que se muestra en el hero. |
 | `about` | `string` | Sí | Texto de About Me. |
 | `email` | `string` | Sí | Email de contacto. |
 | `socials` | `SocialLink[]` | Sí | GitHub, LinkedIn y email. |

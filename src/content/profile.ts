@@ -3,6 +3,8 @@ import type { Profile } from "./types";
 export const profile = {
   name: "Genaro Cravero",
   role: "Software Developer",
+  tagline:
+    "C# developer focused on Unity and gameplay systems, with experience building web products with React, Node.js and Next.js.",
   about:
     "Software Developer with 4+ years of professional experience building interactive applications and software products across different platforms. Strong programming background in C#, JavaScript, and Java, with hands-on experience in Unity, React, and software architecture. Experienced in developing scalable systems, implementing complex features, and collaborating with cross-functional teams throughout the development lifecycle. Adaptable, detail-oriented, and passionate about building meaningful technology.",
   email: "nicocraveroo@gmail.com",
@@ -37,6 +39,7 @@ export const profile = {
     "Unity developer",
     "C# developer",
     "game programmer",
+    "game developer",
     "React developer",
     "portfolio",
   ],

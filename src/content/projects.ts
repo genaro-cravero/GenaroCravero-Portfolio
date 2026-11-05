@@ -1,6 +1,5 @@
 import type { Project } from "./types";
 
-// Example entries: replace them with real projects before publishing.
 export const projects = [
   {
     slug: "ember-protocol",

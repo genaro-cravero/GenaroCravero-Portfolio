@@ -13,6 +13,9 @@ export const skillGroups = [
       "Software Architecture",
       "UI Systems",
       "Editor Tooling",
+      "Enemy AI",
+      "Camera / Cinemachine",
+      "Playables",
     ],
   },
   {
@@ -21,6 +24,6 @@ export const skillGroups = [
   },
   {
     title: "Tools & Practices",
-    skills: ["Git", "GitHub", "Agile", "Code Review", "Debugging"],
+    skills: ["Git", "GitHub", "Agile", "Code Review", "Debugging", "Code Architecture", "Design Patterns", "Jira", "Trello", "Slack", "Object-Oriented Programming"],
   },
 ] satisfies SkillGroup[];
