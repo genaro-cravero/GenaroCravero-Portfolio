@@ -1,7 +1,7 @@
 # Spec 04 — Rutas y páginas
 
 > Estado: vigente. Fuente de verdad del mapa de rutas, la composición de páginas y el SEO.
-> Última actualización: 2026-11-04.
+> Última actualización: 2026-11-05.
 
 ## 1. Mapa de rutas
 
@@ -22,7 +22,7 @@ No existen rutas de administración, autenticación, API de escritura ni formula
 
 Composición exacta, en este orden:
 
-1. `Hero` — rol, titular, propuesta breve, CTAs y stack principal.
+1. `Hero` — nombre como `h1`, rol, propuesta breve, CTAs y stack principal.
 2. `AboutSection` — texto de About provisto por el dueño + foco + stack.
 3. `SelectedWorkSection` — hasta tres proyectos destacados.
 4. `ExperienceSection` — experiencia ordenada por año de inicio descendente.
@@ -33,7 +33,8 @@ Composición exacta, en este orden:
 Reglas:
 
 - Anclas estables: `#about`, `#work`, `#experience`, `#skills`, `#studies`, `#contact`.
-- Un solo `h1` en el hero.
+- Un solo `h1` en el hero y su contenido es el nombre de Genaro.
+- El rol se muestra como línea secundaria; no hay titular de marketing ni frase de efecto.
 - Las secciones usan `aria-labelledby` con el id del encabezado.
 - Los CTAs del hero apuntan a `/projects` y `/#contact`.
 - La home no debe contener datos duplicados: todo viene de `src/content/`.

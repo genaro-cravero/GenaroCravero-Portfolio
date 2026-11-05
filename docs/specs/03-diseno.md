@@ -1,7 +1,7 @@
 # Spec 03 — Diseño
 
 > Estado: vigente. Fuente de verdad visual y de interacción.
-> Última actualización: 2026-11-04.
+> Última actualización: 2026-11-05.
 
 ## 1. Concepto
 
@@ -49,7 +49,8 @@ Escala orientativa:
 
 | Rol | Tamaño | Peso | Tracking |
 | --- | --- | --- | --- |
-| Hero H1 | `clamp(3rem, 9vw, 6.75rem)` | 500 | `-0.06em` |
+| Hero H1 (nombre) | `clamp(2.5rem, 6vw, 4rem)` | 500 | `-0.04em` |
+| Rol del hero | `1.125rem` a `1.5rem` | 400 | normal |
 | H1 de página | `3rem` a `3.75rem` | 500 | `-0.045em` |
 | Título de sección | `1.875rem` a `2.25rem` | 500 | `-0.035em` |
 | CTA de contacto | `2.25rem` a `3.75rem` | 500 | `-0.04em` |
@@ -61,8 +62,10 @@ Escala orientativa:
 Reglas:
 
 - Titulares con `text-balance`.
-- Párrafos con ancho máximo de lectura (`max-w-xl` o `max-w-2xl`).
-- No usar más de tres tamaños de texto en una misma sección.
+- El hero no usa un titular de marketing: el `h1` es el nombre y el rol va como línea secundaria, sin escala de cartel.
+- El `h1` del hero usa `leading-[0.95]`.
+- Párrafos con ancho máximo de lectura (`max-w-xl` o `max-w-2xl`). El párrafo del hero puede usar `max-w-md` para mantener la lectura corta.
+- No usar más de tres tamaños de texto en una misma sección, sin contar las etiquetas mono de metadatos.
 - Las etiquetas mono van en mayúsculas.
 
 ## 4. Layout
@@ -85,6 +88,13 @@ Grillas:
 - Estudios: dos columnas en desktop.
 
 ## 5. Componentes
+
+### Hero
+
+- Ocupa la primera pantalla de la home (`min-h` del viewport menos el header).
+- `h1` con el nombre de Genaro; debajo, el rol como línea secundaria con punto de acento.
+- Propuesta breve en `muted` con ancho de lectura corto (`max-w-md`).
+- Bloque inferior con borde: CTAs a proyectos y contacto, y stack en mono alineado a la derecha en desktop.
 
 ### Header
 

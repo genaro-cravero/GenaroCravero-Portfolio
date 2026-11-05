@@ -1,7 +1,7 @@
 # SPECS.md — Índice de especificaciones
 
 > Contrato principal del proyecto. Los specs detallados viven en `docs/specs/` y son la fuente de verdad funcional y técnica.
-> Última actualización: 2026-11-04.
+> Última actualización: 2026-11-05.
 
 ## 1. Jerarquía documental
 

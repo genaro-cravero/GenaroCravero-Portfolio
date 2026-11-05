@@ -1,11 +1,11 @@
 # MEMORY.md
 
 > Memoria operativa del proyecto. Se actualiza al finalizar cada tarea.
-> Última actualización: 2026-11-04.
+> Última actualización: 2026-11-05.
 
 ## 1. Resumen del estado
 
-- **Estado:** MVP funcional y compilable. Sitio completo con contenido de ejemplo.
+- **Estado:** MVP funcional y compilable. Experiencia, estudios y skills con contenido real; proyectos todavía con ejemplos.
 - **Stack:** Next.js 16.4.5, React 19.3, TypeScript 5, Tailwind CSS 4, Turbopack.
 - **Deploy previsto:** Vercel.
 - **Gestión de contenido:** archivos tipados versionados en Git. Sin CMS, auth ni base de datos.
@@ -14,7 +14,7 @@
 ## 2. Funcionalidades implementadas
 
 - Home de una sola página con secciones:
-  - Hero.
+  - Hero con el nombre como `h1`, el rol como línea secundaria, `profile.tagline`, CTAs y stack.
   - About con el texto profesional provisto por el dueño.
   - Selected work (proyectos destacados).
   - Experience.
@@ -42,16 +42,17 @@
 
 ## 3. Contenido pendiente de reemplazo (CRÍTICO antes de publicar)
 
-El sitio funciona, pero parte del contenido es de ejemplo para demostrar la estructura:
+El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 
-- [ ] **Experiencia:** reemplazar `Studio Name` y `Company Name` en `src/content/experience.ts` por empleos reales, fechas, ubicación y logros.
+- [x] **Experiencia:** contenido real cargado en `src/content/experience.ts` (2026-11-05). Confirmar si Sismo Games sigue vigente: hoy tiene `endYear: 2026` y el sitio muestra `2022 — 2026` en lugar de `Present`.
 - [ ] **Proyectos:** reemplazar `Ember Protocol` y `Hollow Circuit` por proyectos reales en `src/content/projects.ts`. `Portfolio` puede quedarse como proyecto real.
-- [ ] **Estudios:** reemplazar `Degree Title`, `University Name`, `Certification Name` e `Issuing Organization` en `src/content/studies.ts`.
+- [x] **Estudios:** contenido real cargado en `src/content/studies.ts` (2026-11-05).
 - [ ] **Links de proyectos:** agregar URLs reales (demo, tienda, video, repositorio) en el campo `links`.
 - [ ] **Portadas:** agregar imágenes reales en `public/images/projects/` y completar `cover` si se desea.
 - [ ] **URL del sitio:** definir `NEXT_PUBLIC_SITE_URL` en Vercel con el dominio final. El fallback actual es `https://genaro-cravero.vercel.app`.
 - [ ] **Redes:** verificar que los perfiles de GitHub y LinkedIn siguen siendo correctos.
-- [ ] **Textos del hero y contacto:** revisar que la propuesta de valor y la disponibilidad reflejen la situación actual.
+- [ ] **Textos del hero y contacto:** revisar que `profile.tagline`, el rol y la disponibilidad reflejen la situación actual.
+- [ ] **Revisión editorial del contenido real:** el dueño debe dar el visto bueno antes de publicar; hay fechas y afirmaciones que no se pueden verificar desde el repositorio.
 
 ## 4. Decisiones que NO se cambian (sin consulta explícita)
 
@@ -81,6 +82,7 @@ El sitio funciona, pero parte del contenido es de ejemplo para demostrar la estr
 - QA de layout con Edge headless/CDP en 1440, 1024, 768, 390 y 320 px: sin scroll horizontal, un solo `h1`, sin links anidados, sin imágenes sin `alt`, sin links externos sin `rel="noreferrer"`.
 - QA HTTP: `/` 200, `/projects` 200, detalle 200, slug inexistente 404, ruta inexistente 404, `sitemap.xml` 200, `robots.txt` 200, `opengraph-image` 200 `image/png`.
 - Todos los targets táctiles principales miden al menos 44 px de alto (header, menú mobile, CTAs, footer).
+- `.vs/` (índice local de Visual Studio) está en `.gitignore`: Tailwind lo escaneaba como fuente y su archivo bloqueado hacía fallar el build de Turbopack (`os error 32`).
 
 ## 6. Errores y bugs conocidos
 
@@ -128,13 +130,25 @@ El sitio funciona, pero parte del contenido es de ejemplo para demostrar la estr
 - Se inicializó el repositorio Git con un commit inicial en la rama `main`.
 - Se auditó el sitio con Edge headless/CDP en cinco anchos y se verificaron estados HTTP, metadata, sitemap, robots, OG image y anclas.
 
+### 2026-11-05 — Rediseño del hero
+
+- Se actualizaron los specs `01-producto.md`, `03-diseno.md` y `04-rutas-y-paginas.md`: el `h1` es el nombre y el rol va como línea secundaria.
+- `src/components/sections/hero.tsx`: se eliminó el titular de marketing “Interactive software, built with intent.” y el eyebrow que duplicaba el rol.
+- Nuevo `h1`: “Genaro Cravero” con `clamp(2.5rem, 6vw, 4rem)`, peso 500 y tracking `-0.04em`.
+- El rol “Software Developer” pasó a párrafo secundario con punto de acento; se conservaron la propuesta breve, los CTAs y el stack.
+- El bloque inferior pasó de grilla a `flex` para equilibrar el contenido más corto en desktop.
+- Se agregó `.vs/` a `.gitignore` porque Tailwind escaneaba el índice bloqueado de Visual Studio y Turbopack fallaba con `os error 32`.
+- Se agregó `tagline` al tipo `Profile` y a `profile.ts`; el hero ahora consume `profile.tagline` en lugar de texto hardcodeado.
+- Se incorporó el contenido real que el dueño había dejado en el working tree (experiencia, estudios, skills y keywords) y se corrigieron erratas objetivas (`Rafaela`, `Environment`, `MongoDB`) y la indentación de esos archivos.
+- El hero usa `aria-labelledby="hero-heading"` con `id` en el `h1`, como el resto de las secciones.
+
 ## 9. Última consulta
 
-- **Fecha:** 2026-11-04.
-- **Pedido:** crear un portfolio de software developer minimalista, en inglés, con negro predominante, secciones de About, Projects, Experience, Skills, Studies and Certifications y Contact; contenido administrable solo por el dueño; estructura de agentes y documentación en español; specs como fuente de verdad.
-- **Decisiones tomadas:** contenido versionado en Git y deploy en Vercel (confirmado por el usuario).
-- **Resultado:** resuelto. MVP implementado, documentado y verificado con `npm run check`, `npm run build` y auditoría headless de layout, accesibilidad y SEO.
-- **Pendiente del usuario:** reemplazar el contenido de ejemplo y definir la URL/dominio final antes de publicar.
+- **Fecha:** 2026-11-05.
+- **Pedido:** reemplazar el hero por una versión con el nombre como titular y una descripción breve tipo “Software Developer”, porque el titular de marketing anterior parecía demasiado grande e innecesario.
+- **Decisiones tomadas:** el `h1` del hero es el nombre (`clamp(2.5rem, 6vw, 4rem)`); el rol pasa a línea secundaria y se elimina la etiqueta que lo duplicaba. Se agregó `tagline` al perfil para no hardcodear contenido en el componente. Se actualizaron `01-producto.md`, `02-contenido.md`, `03-diseno.md`, `04-rutas-y-paginas.md` y `SPECS.md` como fuente de verdad.
+- **Resultado:** resuelto. `npm run check` y `npm run build` pasan (12 páginas); auditoría headless en 1440, 1024, 768, 390 y 320 px: un solo `h1` con el nombre, sin scroll horizontal, sin links anidados, con `aria-labelledby` y CTAs/stack presentes.
+- **Pendiente del usuario:** revisar el nuevo peso visual del hero en el navegador y dar el visto bueno al contenido real (fechas, roles y proyectos de ejemplo) antes de publicar.
 
 ## 10. Cómo actualizar esta memoria
 
