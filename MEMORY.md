@@ -5,7 +5,7 @@
 
 ## 1. Resumen del estado
 
-- **Estado:** MVP funcional y compilable. Experiencia, estudios y skills con contenido real; proyectos todavía con ejemplos.
+- **Estado:** MVP funcional y compilable. Contenido real cargado en proyectos, experiencia, estudios y skills.
 - **Stack:** Next.js 16.4.5, React 19.3, TypeScript 5, Tailwind CSS 4, Turbopack.
 - **Deploy previsto:** Vercel.
 - **Gestión de contenido:** archivos tipados versionados en Git. Sin CMS, auth ni base de datos.
@@ -46,10 +46,12 @@
 El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 
 - [x] **Experiencia:** contenido real cargado en `src/content/experience.ts` (2026-11-05). Confirmar si Sismo Games sigue vigente: hoy tiene `endYear: 2026` y el sitio muestra `2022 — 2026` en lugar de `Present`.
-- [ ] **Proyectos:** reemplazar `Ember Protocol` y `Hollow Circuit` por proyectos reales en `src/content/projects.ts`. `Portfolio` puede quedarse como proyecto real.
+- [x] **Proyectos:** contenido real cargado en `src/content/projects.ts` (2026-11-05); el listado pasó de 3 a 9 páginas generadas.
 - [x] **Estudios:** contenido real cargado en `src/content/studies.ts` (2026-11-05).
-- [ ] **Links de proyectos:** agregar URLs reales (trailer, demo, tienda, repositorio) en el campo `links`; el soporte y la validación ya están listos.
-- [ ] **Portadas:** agregar imágenes reales en `public/images/projects/` (16:9, mínimo 1200 × 675, <400 KB) y completar `cover`; la carpeta y la validación ya están listas.
+- [x] **Links de proyectos:** trailer, demo, tienda y repositorio cargados para cada proyecto (2026-11-05).
+- [x] **Portadas:** ocho imágenes cargadas en `public/images/projects/` y conectadas con `cover` (2026-11-05).
+- [ ] **Alt de portadas:** hoy son genéricos (`"<Title> cover art"`); reemplazarlos por descripciones reales cuando se revisen las imágenes.
+- [ ] **Calidad de imágenes:** `skinwalker.jpg` mide 460 × 215 (se verá borrosa), `hexperiment.png` es casi cuadrada y `depuro.png` / `heroes-de-la-gripe.png` pesan más de 1 MB. Reemplazar por 1600 × 900 centradas y menos de 400 KB.
 - [ ] **URL del sitio:** definir `NEXT_PUBLIC_SITE_URL` en Vercel con el dominio final. El fallback actual es `https://genaro-cravero.vercel.app`.
 - [ ] **Redes:** verificar que los perfiles de GitHub y LinkedIn siguen siendo correctos.
 - [ ] **Textos del hero y contacto:** revisar que `profile.tagline`, el rol y la disponibilidad reflejen la situación actual.
@@ -71,7 +73,7 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 ## 5. Estado técnico
 
 - `npm run check` pasa: ESLint y TypeScript sin errores.
-- `npm run build` pasa: 12 páginas generadas, sin errores.
+- `npm run build` pasa: 18 rutas generadas (home, listado, 9 proyectos, 404, assets y metadata), sin errores.
 - La home y las páginas de proyecto se prerenderizan como estáticas.
 - Node local: v24.21.0. Node mínimo del proyecto: 20.9+.
 - `cacheComponents` está activado.
@@ -153,13 +155,22 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - Se creó `public/images/projects/` con `.gitkeep` y se documentó el flujo de portadas y links en `README.md` y `docs/specs/02-contenido.md`.
 - Prueba de humo con una portada y links temporales: el detalle renderizó la imagen optimizada, el `preload`, los links y el `og:image` absoluto; luego se revirtió el contenido de prueba.
 
+### 2026-11-05 — Contenido real de proyectos
+
+- El dueño reemplazó los proyectos de ejemplo por 9 proyectos reales, con ocho portadas y links a trailers, demos, tiendas y repositorios.
+- Se corrigieron los `cover.src`, que apuntaban a `../../public/images/projects/...`; ahora usan rutas públicas absolutas `/images/projects/...`. La validación de build los rechazaba.
+- Se corrigió el link de Umbral, que no tenía esquema (`youtube.com/...`), y se normalizaron labels (`GitHub`, `Live site`), erratas y formato del archivo.
+- El `next start` que estaba corriendo servía el build anterior: hubo que reconstruir y reiniciar. `next start` no recarga contenido; para iterar hay que usar `npm run dev` o volver a construir.
+- Verificado en producción local: home con las tres portadas destacadas, detalle con links en la cabecera, imagen optimizada con `preload` y `og:image` absoluto por proyecto.
+
 ## 9. Última consulta
 
 - **Fecha:** 2026-11-05.
-- **Pedido:** poder agregar imágenes de portada a los proyectos y links para ver trailers o acceder al proyecto.
-- **Decisiones tomadas:** la portada se muestra en cards (4:3), detalle (16:9) y como Open Graph propio cuando existe; los links se muestran en la cabecera del detalle, antes de la portada. Se agregó validación en build para portadas y links, y una carpeta `public/images/projects/` lista para recibir archivos.
-- **Resultado:** resuelto. `npm run check` y `npm run build` pasan (12 páginas). Prueba de humo con portada y links temporales: imagen optimizada, `preload`, links externos/internos y `og:image` absoluto funcionando; el contenido de prueba se revirtió.
-- **Pendiente del usuario:** cargar las imágenes y los links reales de cada proyecto; definir el dominio final antes de publicar.
+- **Pedido:** “actualicé projects pero no veo mis cambios”.
+- **Causa:** el `next start` que estaba sirviendo `localhost:3000` usaba un build anterior, y los `cover.src` nuevos apuntaban a `../../public/images/projects/...`, ruta inválida para `next/image` que además rompía la validación de build.
+- **Decisiones tomadas:** corregir las rutas a `/images/projects/...`, arreglar el link de Umbral sin esquema, normalizar labels/erratas y reconstruir el sitio. Para editar contenido conviene `npm run dev`; `next start` requiere rebuild.
+- **Resultado:** resuelto. `npm run check` y `npm run build` pasan (18 rutas, 9 proyectos). Verificado en local: home con portadas destacadas, detalle con links, imagen optimizada con `preload` y `og:image` propio.
+- **Pendiente del usuario:** reemplazar los `alt` genéricos y mejorar las imágenes de baja resolución o peso (`skinwalker`, `hexperiment`, `depuro`, `heroes-de-la-gripe`); definir el dominio final antes de publicar.
 
 ## 10. Cómo actualizar esta memoria
 

@@ -2,7 +2,7 @@
 
 Portfolio personal de software developer, construido con Next.js, TypeScript y Tailwind CSS. Sitio estático, minimalista, en inglés y con tema oscuro permanente.
 
-> **Contenido de ejemplo:** los proyectos actuales (`Ember Protocol` y `Hollow Circuit`) siguen siendo placeholders para demostrar la estructura. La experiencia y los estudios ya tienen contenido real. Antes de publicar hay que reemplazar los proyectos y dar el visto bueno al resto. El detalle está en [`MEMORY.md`](MEMORY.md).
+> **Contenido real cargado:** proyectos, experiencia y estudios ya tienen datos del dueño. Antes de publicar hay que revisar textos, alt de portadas y calidad de imágenes. El detalle está en [`MEMORY.md`](MEMORY.md).
 
 ## Stack
 
