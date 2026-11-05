@@ -60,10 +60,10 @@ Reglas:
 Contenido:
 
 1. Enlace de vuelta a `/projects`.
-2. Cabecera con categoría, año, título, resumen y visual (portada o placeholder).
-3. Descripción en párrafos.
-4. Highlights.
-5. Links opcionales (demo, repositorio, video, tienda).
+2. Cabecera con categoría, año, título, resumen y links opcionales (trailer, demo, repositorio, tienda).
+3. Visual (portada o placeholder).
+4. Descripción en párrafos.
+5. Highlights.
 6. Aside con año, rol, estado opcional y stack.
 7. Navegación al siguiente proyecto (circular sobre el listado ordenado).
 
@@ -73,6 +73,8 @@ Reglas:
 - Un slug inexistente llama a `notFound()` y responde con status 404. El HTML inicial es el shell de error de Next.js; el contenido del 404 se completa en el cliente.
 - `partialPrefetching` está desactivado para que los params no listados devuelvan un 404 real en lugar de un 200 con shell parcial.
 - Metadata propia con `title`, `description`, canonical y Open Graph `article`.
+- Los links se muestran en la cabecera, debajo del resumen, antes de la portada.
+- Si hay `cover`, la metadata Open Graph y Twitter usa la URL absoluta de la portada; si no, usa la imagen OG generada.
 - El visual usa proporción 16:9 y `sizes` adecuado.
 - Los links externos abren en pestaña nueva con `rel="noreferrer"`.
 - No se usa `dynamicParams = false`: es incompatible con `cacheComponents`.

@@ -8,6 +8,7 @@ type ProjectVisualProps = {
   index: number;
   className?: string;
   sizes?: string;
+  preload?: boolean;
 };
 
 export function ProjectVisual({
@@ -15,6 +16,7 @@ export function ProjectVisual({
   index,
   className,
   sizes = "100vw",
+  preload = false,
 }: ProjectVisualProps) {
   return (
     <div
@@ -29,6 +31,7 @@ export function ProjectVisual({
           alt={project.cover.alt}
           fill
           sizes={sizes}
+          preload={preload}
           className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
         />
       ) : (

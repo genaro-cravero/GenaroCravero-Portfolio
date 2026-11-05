@@ -126,8 +126,17 @@ Grillas:
 
 - Placeholder abstracto, no simula una captura.
 - Si hay `cover`, se usa `next/image` con `object-cover` y un zoom mínimo en hover.
+- La portada del detalle se carga con `preload` porque suele ser el LCP.
 - En detalle, proporción 16:9.
 - En cards, proporción 4:3.
+
+### ProjectLinks
+
+- Fila de botones debajo del resumen del detalle, antes de la portada.
+- Borde `line`, texto mono de 10 px en mayúsculas, hover `line-strong` e `ink`.
+- Los links externos muestran `↗` y abren en pestaña nueva con `rel="noreferrer"`.
+- Los links internos no abren pestaña nueva y usan `next/link`.
+- Sin links, el bloque no se renderiza.
 
 ### Experience
 

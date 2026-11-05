@@ -2,7 +2,7 @@
 
 Portfolio personal de software developer, construido con Next.js, TypeScript y Tailwind CSS. Sitio estático, minimalista, en inglés y con tema oscuro permanente.
 
-> **Contenido de ejemplo:** los proyectos, la experiencia y los estudios actuales son placeholders para demostrar la estructura. Antes de publicar hay que reemplazarlos. El detalle está en [`MEMORY.md`](MEMORY.md).
+> **Contenido de ejemplo:** los proyectos actuales (`Ember Protocol` y `Hollow Circuit`) siguen siendo placeholders para demostrar la estructura. La experiencia y los estudios ya tienen contenido real. Antes de publicar hay que reemplazar los proyectos y dar el visto bueno al resto. El detalle está en [`MEMORY.md`](MEMORY.md).
 
 ## Stack
 
@@ -53,10 +53,43 @@ Todo el contenido vive en `src/content/` y está tipado en `src/content/types.ts
 3. Usá un `slug` único en `kebab-case`.
 4. Completá `title`, `summary`, `category`, `year`, `role`, `tech`, `description` y `highlights`.
 5. Marcá `featured: true` si querés que aparezca en la home.
-6. Si tenés portada, guardala en `public/images/projects/` y completá `cover` con `src` y `alt` en inglés.
-7. Ejecutá `npm run check` y `npm run build`.
+6. Agregá `links` para el trailer y el acceso al proyecto (ver abajo).
+7. Si tenés portada, guardala en `public/images/projects/` y completá `cover` (ver abajo).
+8. Ejecutá `npm run check` y `npm run build`.
 
-No hace falta tocar componentes: la home, el listado y el detalle se generan solos. Si hay slugs duplicados, el build falla.
+No hace falta tocar componentes: la home, el listado y el detalle se generan solos. Si hay slugs duplicados, portadas inválidas o links vacíos, el build falla.
+
+#### Portadas
+
+- Guardá la imagen en `public/images/projects/` con el slug como nombre: `my-game.jpg`, `my-game.webp` o `my-game.avif`.
+- Formato 16:9, mínimo 1200 × 675, recomendado 1600 × 900. Las cards recortan a 4:3: dejá el sujeto centrado.
+- Menos de 400 KB por imagen.
+- Completá `cover` con `src` y `alt` en inglés. El `alt` describe lo que se ve; no repite solo el título.
+- Si existe portada, se usa en la card, en el detalle y como imagen Open Graph del proyecto.
+
+```ts
+cover: {
+  src: "/images/projects/my-game.jpg",
+  alt: "Gameplay screenshot showing the energy routing puzzle",
+},
+```
+
+#### Links (trailer, demo, repositorio)
+
+Se muestran debajo del resumen, antes de la portada. Orden recomendado: trailer, acceso al proyecto, repositorio.
+
+```ts
+links: [
+  { label: "Watch trailer", href: "https://youtube.com/watch?v=..." },
+  { label: "Play on itch.io", href: "https://..." },
+  { label: "GitHub", href: "https://github.com/..." },
+],
+```
+
+- `label` en inglés y corto (`Watch trailer`, `Steam page`, `Play on itch.io`, `View live site`, `GitHub`).
+- URLs externas con `https://`: abren en pestaña nueva con `rel="noreferrer"`.
+- Rutas internas con `/`: usan `next/link`.
+- No uses `#`, links vacíos ni links de relleno: el build falla.
 
 El detalle completo del modelo de datos está en [`docs/specs/02-contenido.md`](docs/specs/02-contenido.md).
 

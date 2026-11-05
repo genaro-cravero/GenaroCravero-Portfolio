@@ -1,14 +1,48 @@
 import { projects } from "@/content/projects";
 import type { Project } from "@/content/types";
 
-const seenSlugs = new Set<string>();
+const coverSrcPattern =
+  /^\/images\/projects\/[a-z0-9-]+\.(?:jpe?g|png|webp|avif)$/;
 
-for (const project of projects) {
+const seenSlugs = new Set<string>();
+const projectList: Project[] = projects;
+
+for (const project of projectList) {
   if (seenSlugs.has(project.slug)) {
     throw new Error(`Duplicate project slug: "${project.slug}".`);
   }
 
   seenSlugs.add(project.slug);
+
+  if (project.cover) {
+    if (!coverSrcPattern.test(project.cover.src)) {
+      throw new Error(
+        `Invalid cover for project "${project.slug}": cover.src must match /images/projects/<slug>.(jpg|jpeg|png|webp|avif), received "${project.cover.src}".`,
+      );
+    }
+
+    if (project.cover.alt.trim().length === 0) {
+      throw new Error(
+        `Invalid cover for project "${project.slug}": cover.alt must not be empty.`,
+      );
+    }
+  }
+
+  for (const link of project.links ?? []) {
+    const href = link.href.trim();
+
+    if (link.label.trim().length === 0 || href.length === 0) {
+      throw new Error(
+        `Invalid link for project "${project.slug}": label and href must not be empty.`,
+      );
+    }
+
+    if (href === "#") {
+      throw new Error(
+        `Invalid link for project "${project.slug}": href must not be "#".`,
+      );
+    }
+  }
 }
 
 export const allProjects: Project[] = [...projects].sort(

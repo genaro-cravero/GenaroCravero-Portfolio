@@ -26,8 +26,9 @@
 - Página `/projects` con grilla de todos los proyectos.
 - Página dinámica `/projects/[slug]` generada estáticamente para cada proyecto.
 - Detalle de proyecto con descripción, highlights, stack, rol, estado, links opcionales y siguiente proyecto.
+- Links de proyecto (trailer, demo, repositorio o tienda) visibles en la cabecera del detalle, antes de la portada; externos con `rel="noreferrer"`, internos con `next/link`.
 - Capa de contenido tipada en `src/content/` con validación de slugs duplicados en build.
-- Soporte opcional de portada por proyecto en `public/images/projects/` con `next/image`.
+- Soporte opcional de portada por proyecto en `public/images/projects/` con `next/image`: card 4:3, detalle 16:9 y Open Graph propio cuando existe.
 - Diseño oscuro minimalista con negro dominante y acento cálido.
 - SEO:
   - Metadata global y por página.
@@ -47,8 +48,8 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - [x] **Experiencia:** contenido real cargado en `src/content/experience.ts` (2026-11-05). Confirmar si Sismo Games sigue vigente: hoy tiene `endYear: 2026` y el sitio muestra `2022 — 2026` en lugar de `Present`.
 - [ ] **Proyectos:** reemplazar `Ember Protocol` y `Hollow Circuit` por proyectos reales en `src/content/projects.ts`. `Portfolio` puede quedarse como proyecto real.
 - [x] **Estudios:** contenido real cargado en `src/content/studies.ts` (2026-11-05).
-- [ ] **Links de proyectos:** agregar URLs reales (demo, tienda, video, repositorio) en el campo `links`.
-- [ ] **Portadas:** agregar imágenes reales en `public/images/projects/` y completar `cover` si se desea.
+- [ ] **Links de proyectos:** agregar URLs reales (trailer, demo, tienda, repositorio) en el campo `links`; el soporte y la validación ya están listos.
+- [ ] **Portadas:** agregar imágenes reales en `public/images/projects/` (16:9, mínimo 1200 × 675, <400 KB) y completar `cover`; la carpeta y la validación ya están listas.
 - [ ] **URL del sitio:** definir `NEXT_PUBLIC_SITE_URL` en Vercel con el dominio final. El fallback actual es `https://genaro-cravero.vercel.app`.
 - [ ] **Redes:** verificar que los perfiles de GitHub y LinkedIn siguen siendo correctos.
 - [ ] **Textos del hero y contacto:** revisar que `profile.tagline`, el rol y la disponibilidad reflejen la situación actual.
@@ -142,13 +143,23 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - Se incorporó el contenido real que el dueño había dejado en el working tree (experiencia, estudios, skills y keywords) y se corrigieron erratas objetivas (`Rafaela`, `Environment`, `MongoDB`) y la indentación de esos archivos.
 - El hero usa `aria-labelledby="hero-heading"` con `id` en el `h1`, como el resto de las secciones.
 
+### 2026-11-05 — Portadas y links de proyectos
+
+- Los links de cada proyecto se movieron a la cabecera del detalle, debajo del resumen y antes de la portada, para que el trailer o el acceso al proyecto se vean sin scroll.
+- Los links internos ahora usan `next/link`; los externos abren en pestaña nueva con `rel="noreferrer"`.
+- La portada del detalle se carga con `preload` (sucesor de `priority` en Next.js 16) por ser el LCP.
+- Si el proyecto tiene `cover`, esa imagen se usa como Open Graph y Twitter image con URL absoluta; si no, se mantiene la imagen OG generada.
+- `src/lib/projects.ts` valida en build que la portada viva en `/images/projects/`, tenga extensión permitida y `alt` no vacío; también rechaza links con `label`/`href` vacíos o `#`.
+- Se creó `public/images/projects/` con `.gitkeep` y se documentó el flujo de portadas y links en `README.md` y `docs/specs/02-contenido.md`.
+- Prueba de humo con una portada y links temporales: el detalle renderizó la imagen optimizada, el `preload`, los links y el `og:image` absoluto; luego se revirtió el contenido de prueba.
+
 ## 9. Última consulta
 
 - **Fecha:** 2026-11-05.
-- **Pedido:** reemplazar el hero por una versión con el nombre como titular y una descripción breve tipo “Software Developer”, porque el titular de marketing anterior parecía demasiado grande e innecesario.
-- **Decisiones tomadas:** el `h1` del hero es el nombre (`clamp(2.5rem, 6vw, 4rem)`); el rol pasa a línea secundaria y se elimina la etiqueta que lo duplicaba. Se agregó `tagline` al perfil para no hardcodear contenido en el componente. Se actualizaron `01-producto.md`, `02-contenido.md`, `03-diseno.md`, `04-rutas-y-paginas.md` y `SPECS.md` como fuente de verdad.
-- **Resultado:** resuelto. `npm run check` y `npm run build` pasan (12 páginas); auditoría headless en 1440, 1024, 768, 390 y 320 px: un solo `h1` con el nombre, sin scroll horizontal, sin links anidados, con `aria-labelledby` y CTAs/stack presentes.
-- **Pendiente del usuario:** revisar el nuevo peso visual del hero en el navegador y dar el visto bueno al contenido real (fechas, roles y proyectos de ejemplo) antes de publicar.
+- **Pedido:** poder agregar imágenes de portada a los proyectos y links para ver trailers o acceder al proyecto.
+- **Decisiones tomadas:** la portada se muestra en cards (4:3), detalle (16:9) y como Open Graph propio cuando existe; los links se muestran en la cabecera del detalle, antes de la portada. Se agregó validación en build para portadas y links, y una carpeta `public/images/projects/` lista para recibir archivos.
+- **Resultado:** resuelto. `npm run check` y `npm run build` pasan (12 páginas). Prueba de humo con portada y links temporales: imagen optimizada, `preload`, links externos/internos y `og:image` absoluto funcionando; el contenido de prueba se revirtió.
+- **Pendiente del usuario:** cargar las imágenes y los links reales de cada proyecto; definir el dominio final antes de publicar.
 
 ## 10. Cómo actualizar esta memoria
 

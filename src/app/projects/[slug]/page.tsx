@@ -4,13 +4,60 @@ import { notFound } from "next/navigation";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import { Container } from "@/components/site/container";
 import { ArrowLink } from "@/components/ui/arrow-link";
+import type { ProjectLink } from "@/content/types";
 import {
   allProjects,
   getNextProject,
   getProject,
   getProjectPosition,
 } from "@/lib/projects";
-import { ogImage } from "@/lib/site";
+import { ogImage, siteUrl } from "@/lib/site";
+
+const projectLinkClassName =
+  "group inline-flex items-center gap-3 border border-line px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted transition-colors hover:border-line-strong hover:text-ink";
+
+function ProjectLinks({ links }: { links: ProjectLink[] }) {
+  return (
+    <div className="flex flex-wrap gap-3">
+      {links.map((link) => {
+        const indicator = (
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          >
+            ↗
+          </span>
+        );
+
+        if (link.href.startsWith("http")) {
+          return (
+            <a
+              key={`${link.label}-${link.href}`}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className={projectLinkClassName}
+            >
+              {link.label}
+              {indicator}
+            </a>
+          );
+        }
+
+        return (
+          <Link
+            key={`${link.label}-${link.href}`}
+            href={link.href}
+            className={projectLinkClassName}
+          >
+            {link.label}
+            {indicator}
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
 
 export function generateStaticParams() {
   return allProjects.map((project) => ({ slug: project.slug }));
@@ -28,6 +75,10 @@ export async function generateMetadata({
     return { title: "Page not found" };
   }
 
+  const images = [
+    project.cover ? `${siteUrl}${project.cover.src}` : ogImage,
+  ];
+
   return {
     title: project.title,
     description: project.summary,
@@ -39,13 +90,13 @@ export async function generateMetadata({
       title: project.title,
       description: project.summary,
       url: `/projects/${project.slug}`,
-      images: [ogImage],
+      images,
     },
     twitter: {
       card: "summary_large_image",
       title: project.title,
       description: project.summary,
-      images: [ogImage],
+      images,
     },
   };
 }
@@ -86,6 +137,10 @@ export default async function ProjectPage({
           <p className="max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
             {project.summary}
           </p>
+
+          {project.links?.length ? (
+            <ProjectLinks links={project.links} />
+          ) : null}
         </header>
 
         <div className="mt-10 md:mt-14">
@@ -94,6 +149,7 @@ export default async function ProjectPage({
             index={position + 1}
             className="aspect-[16/9]"
             sizes="(min-width: 1024px) 72rem, 100vw"
+            preload
           />
         </div>
 
@@ -132,32 +188,6 @@ export default async function ProjectPage({
                 ))}
               </ul>
             </section>
-
-            {project.links?.length ? (
-              <div className="mt-12 flex flex-wrap gap-3">
-                {project.links.map((link) => {
-                  const isExternal = link.href.startsWith("http");
-
-                  return (
-                    <a
-                      key={`${link.label}-${link.href}`}
-                      href={link.href}
-                      target={isExternal ? "_blank" : undefined}
-                      rel={isExternal ? "noreferrer" : undefined}
-                      className="group inline-flex items-center gap-3 border border-line px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted transition-colors hover:border-line-strong hover:text-ink"
-                    >
-                      {link.label}
-                      <span
-                        aria-hidden="true"
-                        className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                      >
-                        ↗
-                      </span>
-                    </a>
-                  );
-                })}
-              </div>
-            ) : null}
           </div>
 
           <aside aria-label="Project details">

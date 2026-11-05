@@ -75,12 +75,28 @@ Los selectores y el orden viven en `src/lib/projects.ts`, `src/lib/format.ts` y 
 | `label` | `string` | Texto visible. |
 | `href` | `string` | URL externa o interna. |
 
+Reglas:
+
+- `label` en inglés y corto: `Watch trailer`, `Steam page`, `Play on itch.io`, `GitHub`, `View live site`.
+- Orden recomendado: trailer primero, después el acceso al proyecto y por último el repositorio.
+- URLs externas con `https://`; internas con `/`. No se permiten `#`, cadenas vacías ni links de relleno.
+- El build falla si un link no tiene `label` u `href`.
+
 ### ProjectCover
 
 | Campo | Tipo | Descripción |
 | --- | --- | --- |
 | `src` | `string` | Ruta pública, por ejemplo `/images/projects/ember.jpg`. |
 | `alt` | `string` | Texto alternativo significativo. |
+
+Reglas:
+
+- Guardar el archivo en `public/images/projects/` usando el slug como nombre: `<slug>.jpg`, `<slug>.webp` o `<slug>.avif`.
+- Formato 16:9, mínimo 1200 × 675 y recomendado 1600 × 900. La card recorta a 4:3, así que el sujeto debe quedar centrado.
+- Peso recomendado: menos de 400 KB.
+- `alt` en inglés y significativo; no alcanza con repetir el título.
+- Si hay `cover`, se usa como imagen Open Graph del detalle.
+- El build valida que `src` empiece con `/images/projects/` y use una extensión permitida.
 
 ### ExperienceEntry
 
@@ -119,8 +135,9 @@ Los selectores y el orden viven en `src/lib/projects.ts`, `src/lib/format.ts` y 
 3. Elegir un `slug` único en kebab-case.
 4. Completar `title`, `summary`, `category`, `year`, `role`, `tech`, `description` y `highlights`.
 5. Marcar `featured: true` si debe aparecer en la home.
-6. Si hay imagen, guardarla en `public/images/projects/` y completar `cover`.
-7. Ejecutar `npm run check` y `npm run build`.
+6. Agregar `links` con el trailer y el acceso al proyecto si existen.
+7. Si hay imagen, guardarla en `public/images/projects/` con el slug como nombre y completar `cover` con `src` y `alt` en inglés.
+8. Ejecutar `npm run check` y `npm run build`.
 
 Ejemplo:
 
