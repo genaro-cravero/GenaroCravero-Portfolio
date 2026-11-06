@@ -14,7 +14,7 @@
 ## 2. Funcionalidades implementadas
 
 - Home de una sola página con secciones:
-  - Hero con el nombre como `h1`, el rol como línea secundaria, `profile.tagline`, CTAs y stack.
+  - Hero con el nombre como `h1`, el rol como línea secundaria, `profile.tagline`, CTAs, stack y decoración estructural (retícula hairline, rail de `focusAreas` y marcas de esquina).
   - About con el texto profesional provisto por el dueño.
   - Selected work (proyectos destacados).
   - Experience.
@@ -65,6 +65,7 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - Toda la documentación `.md` está en español, salvo `README.md`, que está en inglés por pedido explícito del dueño (2026-11-06).
 - El negro es el color dominante; el acento es un único tono cálido (`#e2603a`).
 - La estética es minimalista: sin sombras, sin gradientes llamativos, sin animaciones largas, sin UI kits.
+- La única ornamentación admitida es estructural: retícula hairline, marcas de esquina y etiquetas mono. Sin ilustraciones ni imágenes decorativas (2026-11-06).
 - Next.js App Router + TypeScript + Tailwind CSS.
 - Server Components por defecto.
 - Sin dependencias nuevas sin justificación documentada.
@@ -85,6 +86,7 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - QA de layout con Edge headless/CDP en 1440, 1024, 768, 390 y 320 px: sin scroll horizontal, un solo `h1`, sin links anidados, sin imágenes sin `alt`, sin links externos sin `rel="noreferrer"`.
 - QA HTTP: `/` 200, `/projects` 200, detalle 200, slug inexistente 404, ruta inexistente 404, `sitemap.xml` 200, `robots.txt` 200, `opengraph-image` 200 `image/png`.
 - Todos los targets táctiles principales miden al menos 44 px de alto (header, menú mobile, CTAs, footer).
+- QA del hero decorado con Edge/Chrome headless y CDP en 1440, 1280, 1024, 900, 768, 390 y 320 px: sin scroll horizontal, rail visible solo desde `lg`, cruces sin solapar glifos ni capturar clicks, borde del rail alineado al píxel con la regla inferior y `faint` sobre `canvas` en 5.17:1.
 - `.vs/` (índice local de Visual Studio) está en `.gitignore`: Tailwind lo escaneaba como fuente y su archivo bloqueado hacía fallar el build de Turbopack (`os error 32`).
 
 ## 6. Errores y bugs conocidos
@@ -103,6 +105,8 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - Evaluar imágenes Open Graph específicas por proyecto.
 - Evaluar `aria-current` en la navegación (requeriría un Client Component).
 - Evaluar tests E2E con Playwright si el sitio crece.
+- Evaluar `calc(100svh - 4rem - 1px)` en el hero: hoy mide 1 px más que el viewport porque el header suma su borde inferior.
+- Pulir el stack del hero a 320 px: el separador `·` puede quedar colgando al final de la primera línea.
 - Configurar dominio propio en Vercel.
 
 ## 8. Cambios importantes
@@ -169,13 +173,23 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - Se documentó la excepción en `AGENTS.md`, `SPECS.md`, `docs/specs/01-producto.md`, `docs/specs/02-contenido.md` y `docs/specs/05-calidad-y-deploy.md`, para que la regla de documentación en español siga siendo coherente.
 - No se tocó código ni contenido del sitio.
 
+### 2026-11-06 — Decoración estructural del hero
+
+- El dueño pidió que el hero “no se sienta tan vacío”; se ofrecieron tres direcciones y eligió “retícula técnica + datos” con intensidad “muy sutil”.
+- Se actualizó el contrato antes de tocar código: `docs/specs/03-diseno.md` (§1, §5 Hero, §6, §7, §9), `docs/specs/04-rutas-y-paginas.md` (§2) y `docs/specs/01-producto.md` (US-01). La decoración permitida ahora es solo estructural y no puede mostrar datos inventados.
+- `src/app/globals.css`: `.project-grid` pasó a `.hairline-grid` para compartir una única textura entre el hero y el placeholder de proyecto. Mismos valores (1 px, blanco al 4.5 %, `2.5rem`, máscara radial).
+- `src/components/sections/hero.tsx`: capa de retícula enmascarada con `aria-hidden` y `pointer-events-none`; rail de `profile.focusAreas` desde `lg` con `border-l`, etiqueta mono `Focus` y hairlines; marcas de esquina `+` en `faint` al 50 % en las esquinas superior izquierda e inferior derecha; el bloque de CTAs salió de la columna para que la regla horizontal vuelva a medir todo el ancho y el borde del rail cierre contra ella sin formar una T.
+- El rail va `aria-hidden` porque `focusAreas` ya se lee en About: no se pierde información y no se duplica en el orden de lectura.
+- Sin dependencias nuevas, sin `"use client"`, sin contenido nuevo ni cambios en `src/content/`.
+- Verificado: `npm run check` y `npm run build` en verde (18 rutas); geometría del rail y la regla coincidiendo al píxel en 1440 y 1024; sin scroll horizontal de 1440 a 320 px.
+
 ## 9. Última consulta
 
 - **Fecha:** 2026-11-06.
-- **Pedido:** “el README lo quiero en inglés nomás”.
-- **Decisión tomada:** `README.md` pasa a inglés por pedido explícito del dueño y queda como única excepción a la regla de documentación en español. Se dejó registrada la excepción en `AGENTS.md` §2, `SPECS.md` §4, `docs/specs/01-producto.md` §6, `docs/specs/02-contenido.md` §1 y `docs/specs/05-calidad-y-deploy.md` §1.
-- **Resultado:** resuelto. README reescrito en inglés con el mismo contenido (stack, quick start, comandos, flujo de contenido, portadas y links, estructura, documentación, variables de entorno y deploy). Sin cambios de código, por lo que no se alteró el build.
-- **Pendiente del usuario:** ninguno de este pedido. Siguen vigentes los pendientes de contenido e imágenes de la sección 3.
+- **Pedido:** “No me convence el hero. Agregale unas decoraciones para que no se sienta tan vacío y triste”.
+- **Decisión tomada:** se mantiene la estética minimalista y se admite únicamente decoración estructural (retícula hairline, rail mono de focus areas y marcas de esquina). El dueño eligió esa dirección y la intensidad “muy sutil” sobre dos alternativas.
+- **Resultado:** resuelto. Specs actualizados, hero implementado, QA sin hallazgos P1/P2, `npm run check` y `npm run build` en verde.
+- **Pendiente del usuario:** mirar el resultado en el navegador y confirmar que la intensidad y la altura del rail son las buscadas; ajustar es cambiar opacidades o el ancho del rail. Siguen vigentes los pendientes de contenido e imágenes de la sección 3.
 
 ## 10. Cómo actualizar esta memoria
 

@@ -1,7 +1,7 @@
 # Spec 01 — Producto
 
 > Estado: vigente. Fuente de verdad del alcance funcional.
-> Última actualización: 2026-11-05.
+> Última actualización: 2026-11-06.
 
 ## 1. Visión
 
@@ -68,6 +68,7 @@ Criterios:
 - [ ] El hero muestra el nombre como `h1`, el rol como línea secundaria y una propuesta breve.
 - [ ] El nombre es el elemento dominante del hero; no hay titular de marketing de gran escala.
 - [ ] Hay un CTA hacia proyectos y otro hacia contacto.
+- [ ] La decoración del hero es sutil y estructural: no compite con el nombre ni con los CTAs y no agrega información inventada.
 - [ ] La home incluye el texto de About provisto por el dueño.
 - [ ] El stack principal es visible sin hacer scroll excesivo.
 

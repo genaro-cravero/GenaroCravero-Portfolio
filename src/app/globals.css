@@ -43,7 +43,7 @@
   }
 }
 
-.project-grid {
+.hairline-grid {
   background-image:
     linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);

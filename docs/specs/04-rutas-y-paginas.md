@@ -1,7 +1,7 @@
 # Spec 04 — Rutas y páginas
 
 > Estado: vigente. Fuente de verdad del mapa de rutas, la composición de páginas y el SEO.
-> Última actualización: 2026-11-05.
+> Última actualización: 2026-11-06.
 
 ## 1. Mapa de rutas
 
@@ -37,6 +37,7 @@ Reglas:
 - El rol se muestra como línea secundaria; no hay titular de marketing ni frase de efecto.
 - Las secciones usan `aria-labelledby` con el id del encabezado.
 - Los CTAs del hero apuntan a `/projects` y `/#contact`.
+- La decoración del hero es estructural (retícula, marcas y rail de focus areas) y solo usa datos existentes en `src/content/`.
 - La home no debe contener datos duplicados: todo viene de `src/content/`.
 
 ## 3. Listado de proyectos (`/projects`)

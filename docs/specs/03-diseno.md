@@ -1,7 +1,7 @@
 # Spec 03 — Diseño
 
 > Estado: vigente. Fuente de verdad visual y de interacción.
-> Última actualización: 2026-11-05.
+> Última actualización: 2026-11-06.
 
 ## 1. Concepto
 
@@ -14,6 +14,8 @@ Sensaciones buscadas:
 - Editorial, con mucho aire y tipografía protagonista.
 - Oscuro, pero legible.
 - Un único acento cálido que aparece con moderación.
+
+La única ornamentación admitida es estructural: retícula de líneas de 1 px, marcas de esquina y etiquetas mono. No hay ilustraciones, imágenes decorativas, íconos ilustrados ni efectos de fondo.
 
 ## 2. Color
 
@@ -92,9 +94,13 @@ Grillas:
 ### Hero
 
 - Ocupa la primera pantalla de la home (`min-h` del viewport menos el header).
+- Fondo con la retícula hairline enmascarada en radial (blanco al 4–5 % de opacidad), la misma textura del placeholder de proyecto. Es la única textura del sitio y no debe leerse como imagen.
 - `h1` con el nombre de Genaro; debajo, el rol como línea secundaria con punto de acento.
 - Propuesta breve en `muted` con ancho de lectura corto (`max-w-md`).
 - Bloque inferior con borde: CTAs a proyectos y contacto, y stack en mono alineado a la derecha en desktop.
+- Rail de metadatos desde `lg`: columna angosta alineada al borde derecho del contenido, separada con `border-l border-line`, con etiqueta mono `Focus` y `profile.focusAreas` en mono `faint`. No reemplaza al stack ni duplica el bloque inferior. Su borde termina justo en la regla inferior, que ocupa todo el ancho del contenido.
+- Marcas de esquina en cruz (`+`) en `faint` a baja opacidad, en las esquinas superior izquierda e inferior derecha del bloque de contenido.
+- Toda la decoración es `aria-hidden` y solo puede mostrar datos que ya existen en `src/content/`. No se inventan ubicación, disponibilidad ni fechas.
 
 ### Header
 
@@ -177,6 +183,7 @@ Grillas:
 - Curva de entrada del hero: `cubic-bezier(0.22, 1, 0.36, 1)`, 700 ms.
 - El hero aparece con `rise`: opacidad 0→1 y desplazamiento vertical de 1rem.
 - Hovers: cambios de color, borde y desplazamientos de 1–2 px.
+- La decoración del hero es estática: no tiene animación propia ni infinita.
 - No hay animaciones de scroll.
 - Respetar `prefers-reduced-motion`: sin animación de entrada y scroll instantáneo.
 
@@ -193,6 +200,8 @@ Reglas:
 - Mobile first.
 - El menú desktop se oculta por debajo de `md`.
 - El hero reduce el tamaño con `clamp`.
+- El rail de metadatos del hero se oculta por debajo de `lg`.
+- La retícula del hero se mantiene en todos los anchos, sin generar scroll.
 - Las grillas colapsan a una columna.
 - No hay scroll horizontal.
 - Los targets táctiles deben tener al menos 44 px de alto cuando sean acciones principales.
@@ -225,5 +234,6 @@ Reglas:
 - No usar animaciones infinitas.
 - No usar carruseles.
 - No usar gradientes llamativos.
-- La grilla abstracta del placeholder es la única textura permitida.
+- La retícula hairline del hero y del placeholder es la única textura permitida; no se agregan otras texturas ni patrones.
+- La decoración no puede competir con el contenido: sin contraste alto, sin movimiento propio y sin texto nuevo.
 - Si se agregan portadas, deben ser capturas reales o arte propio, no mockups genéricos.
