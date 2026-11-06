@@ -11,7 +11,8 @@ El objetivo de este documento es que cualquier agente (o persona) pueda trabajar
 
 ## 2. Reglas de idioma
 
-- **Todos los archivos `.md` se escriben en español.** Esto incluye `AGENTS.md`, `MEMORY.md`, `SPECS.md`, `README.md`, los specs de `docs/specs/` y cualquier documentación futura.
+- **Todos los archivos `.md` se escriben en español.** Esto incluye `AGENTS.md`, `MEMORY.md`, `SPECS.md`, los specs de `docs/specs/` y cualquier documentación futura.
+- **Excepción:** `README.md` se escribe en inglés por pedido explícito del dueño (2026-11-06). Es la única excepción y no se extiende a otros archivos.
 - **Todo el código se escribe en inglés.** Esto incluye nombres de archivos, componentes, funciones, variables, tipos, clases, comentarios de código, mensajes de error y contenido de los archivos de datos.
 - **Todo el contenido visible del sitio está en inglés.** About, proyectos, experiencia, skills, estudios y contacto.
 - Los mensajes de commit se escriben en inglés y siguen Conventional Commits (`feat:`, `fix:`, `docs:`, `refactor:`).
@@ -22,7 +23,7 @@ El objetivo de este documento es que cualquier agente (o persona) pueda trabajar
 1. `docs/specs/*.md` — contrato funcional, de contenido, diseño, rutas y calidad.
 2. `AGENTS.md` — proceso de trabajo y convenciones.
 3. `MEMORY.md` — estado actual, pendientes, decisiones y última consulta.
-4. `README.md` — guía rápida para personas.
+4. `README.md` — guía rápida para personas, en inglés.
 
 Si hay conflicto entre documentos, gana el spec correspondiente. Si el código contradice un spec, el código es el bug, salvo que el spec se actualice primero con una justificación explícita.
 

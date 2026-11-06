@@ -8,7 +8,7 @@
 1. `docs/specs/*.md` — comportamiento esperado, modelo de contenido, diseño, rutas y calidad.
 2. `AGENTS.md` — proceso, convenciones y reglas de los agentes.
 3. `MEMORY.md` — estado actual, decisiones, pendientes y última consulta.
-4. `README.md` — guía operativa para personas.
+4. `README.md` — guía operativa para personas, en inglés.
 
 Si el código contradice un spec, el código es el bug. Si el negocio cambió, se actualiza el spec primero y luego el código.
 
@@ -37,7 +37,7 @@ El contenido se administra en archivos tipados versionados en Git. No hay CMS, a
 
 ## 4. Requisitos no negociables
 
-- El sitio está en inglés; la documentación en español.
+- El sitio está en inglés; la documentación en español, salvo `README.md`, que está en inglés por pedido del dueño.
 - El negro es el color dominante.
 - La estética es minimalista.
 - El contenido solo lo puede modificar el dueño mediante Git.

@@ -1,7 +1,7 @@
 # MEMORY.md
 
 > Memoria operativa del proyecto. Se actualiza al finalizar cada tarea.
-> Última actualización: 2026-11-05.
+> Última actualización: 2026-11-06.
 
 ## 1. Resumen del estado
 
@@ -62,7 +62,7 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - El contenido se administra en Git; no se agrega CMS, base de datos, auth ni panel de administración.
 - Solo el dueño puede agregar contenido porque requiere acceso de escritura al repositorio.
 - La interfaz y el contenido público están en inglés.
-- Toda la documentación `.md` está en español.
+- Toda la documentación `.md` está en español, salvo `README.md`, que está en inglés por pedido explícito del dueño (2026-11-06).
 - El negro es el color dominante; el acento es un único tono cálido (`#e2603a`).
 - La estética es minimalista: sin sombras, sin gradientes llamativos, sin animaciones largas, sin UI kits.
 - Next.js App Router + TypeScript + Tailwind CSS.
@@ -163,14 +163,19 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - El `next start` que estaba corriendo servía el build anterior: hubo que reconstruir y reiniciar. `next start` no recarga contenido; para iterar hay que usar `npm run dev` o volver a construir.
 - Verificado en producción local: home con las tres portadas destacadas, detalle con links en la cabecera, imagen optimizada con `preload` y `og:image` absoluto por proyecto.
 
+### 2026-11-06 — README en inglés
+
+- El dueño pidió pasar `README.md` a inglés. Se reescribió completo manteniendo la estructura y el contenido.
+- Se documentó la excepción en `AGENTS.md`, `SPECS.md`, `docs/specs/01-producto.md`, `docs/specs/02-contenido.md` y `docs/specs/05-calidad-y-deploy.md`, para que la regla de documentación en español siga siendo coherente.
+- No se tocó código ni contenido del sitio.
+
 ## 9. Última consulta
 
-- **Fecha:** 2026-11-05.
-- **Pedido:** “actualicé projects pero no veo mis cambios”.
-- **Causa:** el `next start` que estaba sirviendo `localhost:3000` usaba un build anterior, y los `cover.src` nuevos apuntaban a `../../public/images/projects/...`, ruta inválida para `next/image` que además rompía la validación de build.
-- **Decisiones tomadas:** corregir las rutas a `/images/projects/...`, arreglar el link de Umbral sin esquema, normalizar labels/erratas y reconstruir el sitio. Para editar contenido conviene `npm run dev`; `next start` requiere rebuild.
-- **Resultado:** resuelto. `npm run check` y `npm run build` pasan (18 rutas, 9 proyectos). Verificado en local: home con portadas destacadas, detalle con links, imagen optimizada con `preload` y `og:image` propio.
-- **Pendiente del usuario:** reemplazar los `alt` genéricos y mejorar las imágenes de baja resolución o peso (`skinwalker`, `hexperiment`, `depuro`, `heroes-de-la-gripe`); definir el dominio final antes de publicar.
+- **Fecha:** 2026-11-06.
+- **Pedido:** “el README lo quiero en inglés nomás”.
+- **Decisión tomada:** `README.md` pasa a inglés por pedido explícito del dueño y queda como única excepción a la regla de documentación en español. Se dejó registrada la excepción en `AGENTS.md` §2, `SPECS.md` §4, `docs/specs/01-producto.md` §6, `docs/specs/02-contenido.md` §1 y `docs/specs/05-calidad-y-deploy.md` §1.
+- **Resultado:** resuelto. README reescrito en inglés con el mismo contenido (stack, quick start, comandos, flujo de contenido, portadas y links, estructura, documentación, variables de entorno y deploy). Sin cambios de código, por lo que no se alteró el build.
+- **Pendiente del usuario:** ninguno de este pedido. Siguen vigentes los pendientes de contenido e imágenes de la sección 3.
 
 ## 10. Cómo actualizar esta memoria
 

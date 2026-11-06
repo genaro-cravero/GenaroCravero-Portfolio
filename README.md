@@ -1,71 +1,71 @@
 # Portfolio — Genaro Cravero
 
-Portfolio personal de software developer, construido con Next.js, TypeScript y Tailwind CSS. Sitio estático, minimalista, en inglés y con tema oscuro permanente.
+Personal software developer portfolio built with Next.js, TypeScript and Tailwind CSS. A static, minimalist, English-only site with a permanent dark theme.
 
-> **Contenido real cargado:** proyectos, experiencia y estudios ya tienen datos del dueño. Antes de publicar hay que revisar textos, alt de portadas y calidad de imágenes. El detalle está en [`MEMORY.md`](MEMORY.md).
+> **Real content loaded:** projects, experience and studies already hold the owner's data. Before publishing, review the copy, cover image `alt` text and image quality. Details live in [`MEMORY.md`](MEMORY.md).
 
 ## Stack
 
 - Next.js 16.4 (App Router) + React 19
-- TypeScript estricto
-- Tailwind CSS 4 con `@tailwindcss/turbopack`
-- Contenido tipado versionado en Git
-- Deploy previsto en Vercel
+- Strict TypeScript
+- Tailwind CSS 4 with `@tailwindcss/turbopack`
+- Typed content versioned in Git
+- Deploy target: Vercel
 
-## Empezar
+## Getting started
 
-Requisitos: Node.js 20.9 o superior.
+Requirements: Node.js 20.9 or newer.
 
 ```bash
 npm install
 npm run dev
 ```
 
-El sitio queda en [http://localhost:3000](http://localhost:3000).
+The site runs at [http://localhost:3000](http://localhost:3000).
 
-## Comandos
+## Commands
 
 ```bash
-npm run dev        # servidor de desarrollo
-npm run build      # build de producción
-npm run start      # servir el build
+npm run dev        # development server
+npm run build      # production build
+npm run start      # serve the build
 npm run lint       # ESLint
-npm run typecheck  # TypeScript sin emitir
+npm run typecheck  # TypeScript without emitting
 npm run check      # lint + typecheck
 ```
 
-## Cómo agregar contenido
+## Adding content
 
-Todo el contenido vive en `src/content/` y está tipado en `src/content/types.ts`.
+All content lives in `src/content/` and is typed in `src/content/types.ts`.
 
-| Archivo | Qué contiene |
+| File | Contents |
 | --- | --- |
-| `src/content/profile.ts` | Nombre, rol, About, email, redes, foco, stack y metadata. |
-| `src/content/projects.ts` | Proyectos del portfolio. |
-| `src/content/experience.ts` | Experiencia profesional. |
-| `src/content/skills.ts` | Grupos de skills. |
-| `src/content/studies.ts` | Estudios y certificaciones. |
+| `src/content/profile.ts` | Name, role, About, email, social links, focus, stack and metadata. |
+| `src/content/projects.ts` | Portfolio projects. |
+| `src/content/experience.ts` | Professional experience. |
+| `src/content/skills.ts` | Skill groups. |
+| `src/content/studies.ts` | Studies and certifications. |
 
-### Agregar un proyecto
+### Adding a project
 
-1. Abrí `src/content/projects.ts`.
-2. Agregá un objeto al array `projects`.
-3. Usá un `slug` único en `kebab-case`.
-4. Completá `title`, `summary`, `category`, `year`, `role`, `tech`, `description` y `highlights`.
-5. Marcá `featured: true` si querés que aparezca en la home.
-6. Agregá `links` para el trailer y el acceso al proyecto (ver abajo).
-7. Si tenés portada, guardala en `public/images/projects/` y completá `cover` (ver abajo).
-8. Ejecutá `npm run check` y `npm run build`.
+1. Open `src/content/projects.ts`.
+2. Add an object to the `projects` array.
+3. Use a unique `kebab-case` `slug`.
+4. Fill in `title`, `summary`, `category`, `year`, `role`, `tech`, `description` and `highlights`.
+5. Set `featured: true` if you want it on the home page.
+6. Add `links` for the trailer and the project entry point (see below).
+7. If you have cover art, save it in `public/images/projects/` and fill in `cover` (see below).
+8. Run `npm run check` and `npm run build`.
 
-No hace falta tocar componentes: la home, el listado y el detalle se generan solos. Si hay slugs duplicados, portadas inválidas o links vacíos, el build falla.
+No component changes are needed: the home page, the listing and the detail page are generated automatically. The build fails on duplicate slugs, invalid covers or empty links.
 
-#### Portadas
+#### Covers
 
-- Guardá la imagen en `public/images/projects/` con el slug como nombre: `my-game.jpg`, `my-game.webp` o `my-game.avif`.
-- Formato 16:9, mínimo 1200 × 675, recomendado 1600 × 900. Las cards recortan a 4:3: dejá el sujeto centrado.
-- Menos de 400 KB por imagen.
-- Completá `cover` con `src` y `alt` en inglés. El `alt` describe lo que se ve; no repite solo el título.
-- Si existe portada, se usa en la card, en el detalle y como imagen Open Graph del proyecto.
+- Save the image in `public/images/projects/` using the slug as the file name: `my-game.jpg`, `my-game.webp` or `my-game.avif`.
+- 16:9 format, at least 1200 × 675, 1600 × 900 recommended. Cards crop to 4:3, so keep the subject centered.
+- Under 400 KB per image.
+- Fill in `cover` with `src` and an English `alt`. The `alt` describes what is visible; it does not just repeat the title.
+- If a cover exists, it is used on the card, on the detail page and as the project's Open Graph image.
 
 ```ts
 cover: {
@@ -74,9 +74,9 @@ cover: {
 },
 ```
 
-#### Links (trailer, demo, repositorio)
+#### Links (trailer, demo, repository)
 
-Se muestran debajo del resumen, antes de la portada. Orden recomendado: trailer, acceso al proyecto, repositorio.
+They render below the summary, before the cover. Recommended order: trailer, project entry point, repository.
 
 ```ts
 links: [
@@ -86,54 +86,54 @@ links: [
 ],
 ```
 
-- `label` en inglés y corto (`Watch trailer`, `Steam page`, `Play on itch.io`, `View live site`, `GitHub`).
-- URLs externas con `https://`: abren en pestaña nueva con `rel="noreferrer"`.
-- Rutas internas con `/`: usan `next/link`.
-- No uses `#`, links vacíos ni links de relleno: el build falla.
+- `label` in English and short (`Watch trailer`, `Steam page`, `Play on itch.io`, `View live site`, `GitHub`).
+- External URLs with `https://` open in a new tab with `rel="noreferrer"`.
+- Internal paths with `/` use `next/link`.
+- Do not use `#`, empty links or filler links: the build fails.
 
-El detalle completo del modelo de datos está en [`docs/specs/02-contenido.md`](docs/specs/02-contenido.md).
+The full data model is documented in [`docs/specs/02-contenido.md`](docs/specs/02-contenido.md) (Spanish).
 
-## Estructura
+## Project structure
 
 ```text
 .
 ├── AGENTS.md
 ├── MEMORY.md
 ├── SPECS.md
-├── docs/specs/                 # contrato funcional y técnico
+├── docs/specs/                 # functional and technical contract
 ├── opencode.json
-├── .opencode/agents/           # orchestrator + subagentes
+├── .opencode/agents/           # orchestrator + subagents
 ├── src/
-│   ├── app/                    # rutas, metadata, SEO, estilos globales
-│   ├── components/             # secciones, site y primitivas de UI
-│   ├── content/                # datos tipados del portfolio
-│   └── lib/                    # utilidades y selectores
-└── public/                     # assets estáticos
+│   ├── app/                    # routes, metadata, SEO, global styles
+│   ├── components/             # sections, site and UI primitives
+│   ├── content/                # typed portfolio data
+│   └── lib/                    # utilities and selectors
+└── public/                     # static assets
 ```
 
-## Documentación
+## Documentation
 
-La documentación está en español; el código y el contenido público, en inglés.
+This README is in English. The rest of the documentation is in Spanish; the code and all public content are in English.
 
-- [`AGENTS.md`](AGENTS.md) — funcionamiento y convenciones de los agentes.
-- [`MEMORY.md`](MEMORY.md) — estado actual, pendientes, decisiones y última consulta.
-- [`SPECS.md`](SPECS.md) — índice de specs y criterios de aceptación globales.
-- [`docs/specs/`](docs/specs/) — producto, contenido, diseño, rutas y calidad.
+- [`AGENTS.md`](AGENTS.md) — agent workflow and conventions.
+- [`MEMORY.md`](MEMORY.md) — current state, pending work, decisions and latest request.
+- [`SPECS.md`](SPECS.md) — spec index and global acceptance criteria.
+- [`docs/specs/`](docs/specs/) — product, content, design, routes and quality.
 
-## Variables de entorno
+## Environment variables
 
-| Variable | Requerida | Descripción |
+| Variable | Required | Description |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Sí en producción | URL pública sin barra final. Se usa en canonical, sitemap, robots, Open Graph y JSON-LD. |
+| `NEXT_PUBLIC_SITE_URL` | Yes in production | Public URL without a trailing slash. Used by canonical, sitemap, robots, Open Graph and JSON-LD. |
 
-Hay un ejemplo en `.env.example`. El fallback local es `https://genaro-cravero.vercel.app`.
+There is an example in `.env.example`. The local fallback is `https://genaro-cravero.vercel.app`.
 
-## Deploy en Vercel
+## Deploying to Vercel
 
-1. Subí el repositorio a GitHub.
-2. Importalo en Vercel con el preset de Next.js.
-3. Definí `NEXT_PUBLIC_SITE_URL` con el dominio final.
+1. Push the repository to GitHub.
+2. Import it into Vercel with the Next.js preset.
+3. Set `NEXT_PUBLIC_SITE_URL` to the final domain.
 4. Deploy.
-5. Verificá `/`, `/projects`, un detalle, `/sitemap.xml`, `/robots.txt` y la imagen Open Graph.
+5. Verify `/`, `/projects`, one detail page, `/sitemap.xml`, `/robots.txt` and the Open Graph image.
 
-Antes de publicar, revisá el checklist de [`docs/specs/05-calidad-y-deploy.md`](docs/specs/05-calidad-y-deploy.md).
+Before publishing, go through the checklist in [`docs/specs/05-calidad-y-deploy.md`](docs/specs/05-calidad-y-deploy.md) (Spanish).

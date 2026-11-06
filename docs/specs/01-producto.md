@@ -51,7 +51,7 @@ El portfolio concentra esa información en una experiencia corta, navegable y si
 ## 6. Restricciones
 
 - El sitio público está en inglés.
-- La documentación está en español.
+- La documentación está en español, salvo `README.md`, que está en inglés por pedido del dueño.
 - El contenido se versiona en Git y solo el dueño puede editarlo.
 - El deploy objetivo es Vercel.
 - El sitio debe ser estático siempre que sea posible.

@@ -15,7 +15,7 @@ Una tarea se considera terminada cuando:
 - [ ] No hay links anidados.
 - [ ] La UI es responsive y navegable por teclado.
 - [ ] El contenido nuevo está en inglés y tipado.
-- [ ] La documentación afectada está actualizada en español.
+- [ ] La documentación afectada está actualizada en español (salvo `README.md`, en inglés).
 - [ ] `MEMORY.md` registra el estado y la última consulta.
 
 ## 2. Comandos de verificación

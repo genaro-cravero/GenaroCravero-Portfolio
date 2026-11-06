@@ -9,7 +9,7 @@
 - Agregar contenido no debe requerir tocar componentes ni estilos.
 - Todo el contenido visible está en inglés.
 - Los comentarios de los archivos de datos están en inglés.
-- La documentación que explica cómo editar está en español.
+- La documentación que explica cómo editar está en español; la excepción es `README.md`, que está en inglés por pedido del dueño.
 - Solo el dueño del repositorio puede modificar el contenido, porque requiere acceso de escritura.
 
 ## 2. Archivos
