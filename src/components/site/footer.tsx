@@ -9,7 +9,7 @@ export async function Footer() {
 
   return (
     <footer className="border-t border-line">
-      <Container className="flex flex-col gap-6 py-8 font-mono text-[10px] uppercase tracking-[0.18em] text-faint sm:flex-row sm:items-center sm:justify-between">
+      <Container className="flex flex-col gap-6 py-8 font-mono text-[11px] uppercase tracking-[0.18em] text-faint sm:flex-row sm:items-center sm:justify-between">
         <p>
           © {year} {profile.name}
         </p>

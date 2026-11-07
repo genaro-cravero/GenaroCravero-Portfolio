@@ -47,14 +47,14 @@ export function ProjectVisual({
           />
           <span
             aria-hidden="true"
-            className="absolute bottom-3 right-4 font-mono text-[clamp(3.5rem,8vw,6rem)] leading-none tracking-[-0.08em] text-white/[0.055]"
+            className="absolute bottom-3 right-4 font-mono text-[clamp(3.75rem,8vw,6.25rem)] leading-none tracking-[-0.08em] text-white/[0.055]"
           >
             {formatIndex(index)}
           </span>
         </>
       )}
 
-      <span className="absolute left-4 top-4 font-mono text-[9px] uppercase tracking-[0.2em] text-faint">
+      <span className="absolute left-4 top-4 font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
         {project.category}
       </span>
       <span

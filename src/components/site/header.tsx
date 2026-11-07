@@ -32,7 +32,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex h-16 items-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted transition-colors hover:text-ink"
+              className="flex h-16 items-center font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors hover:text-ink"
             >
               {item.label}
             </Link>
@@ -40,7 +40,7 @@ export function Header() {
         </nav>
 
         <details className="group relative md:hidden">
-          <summary className="flex h-16 cursor-pointer list-none items-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted transition-colors hover:text-ink [&::-webkit-details-marker]:hidden">
+          <summary className="flex h-16 cursor-pointer list-none items-center font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors hover:text-ink [&::-webkit-details-marker]:hidden">
             Menu
           </summary>
           <nav
@@ -51,7 +51,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex min-h-11 items-center px-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted transition-colors hover:bg-surface-raised hover:text-ink"
+                className="flex min-h-11 items-center px-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors hover:bg-surface-raised hover:text-ink"
               >
                 {item.label}
               </Link>

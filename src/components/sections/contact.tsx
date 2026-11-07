@@ -23,7 +23,7 @@ export function ContactSection() {
             href={`mailto:${profile.email}`}
             className="group flex flex-wrap items-center justify-between gap-4 border-b border-line py-5 transition-colors hover:text-accent"
           >
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
               Email
             </span>
             <span className="flex items-center gap-3 text-sm sm:text-base">
@@ -45,7 +45,7 @@ export function ContactSection() {
               rel="noreferrer"
               className="group flex flex-wrap items-center justify-between gap-4 border-b border-line py-5 transition-colors hover:text-accent"
             >
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
                 {social.label}
               </span>
               <span className="flex items-center gap-3 text-sm sm:text-base">

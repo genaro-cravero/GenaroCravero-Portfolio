@@ -1,7 +1,7 @@
 # Spec 03 — Diseño
 
 > Estado: vigente. Fuente de verdad visual y de interacción.
-> Última actualización: 2026-11-06.
+> Última actualización: 2026-11-07.
 
 ## 1. Concepto
 
@@ -51,15 +51,20 @@ Escala orientativa:
 
 | Rol | Tamaño | Peso | Tracking |
 | --- | --- | --- | --- |
-| Hero H1 (nombre) | `clamp(2.5rem, 6vw, 4rem)` | 500 | `-0.04em` |
-| Rol del hero | `1.125rem` a `1.5rem` | 400 | normal |
-| H1 de página | `3rem` a `3.75rem` | 500 | `-0.045em` |
-| Título de sección | `1.875rem` a `2.25rem` | 500 | `-0.035em` |
-| CTA de contacto | `2.25rem` a `3.75rem` | 500 | `-0.04em` |
-| Cuerpo | `0.875rem` a `1.125rem` | 400 | normal |
-| About | `1.25rem` a `1.5rem` | 400 | normal |
-| Etiqueta mono | `9px` a `10px` | 500 | `0.18em` a `0.24em` |
-| Metadato | `10px` | 500 | `0.14em` a `0.2em` |
+| Hero H1 (nombre) | `clamp(2.5rem, 6.2vw, 4.25rem)` | 500 | `-0.04em` |
+| Rol del hero | `1.1875rem` a `1.3125rem` | 400 | normal |
+| H1 de página | `2.375rem` a `4.75rem` | 500 | `-0.045em` |
+| Título de sección | `2rem` a `2.375rem` | 500 | `-0.035em` |
+| CTA de contacto | `2.375rem` a `4rem` | 500 | `-0.04em` |
+| Cuerpo | `0.9375rem` a `1.1875rem` | 400 | normal |
+| About | `1.3125rem` a `1.5625rem` | 400 | normal |
+| Etiqueta mono | `11px` | 500 | `0.14em` a `0.24em` |
+| Texto auxiliar de card | `0.9375rem` | 400 | normal |
+
+Reglas:
+
+- La escala base de Tailwind se sobreescribe en `@theme` (`globals.css`) para subir cada paso entre 1 y 2 px: `xs` 13 px, `sm` 15 px, `base` 17 px, `lg` 19 px, `xl` 21 px, `2xl` 25 px, `3xl` 32 px, `4xl` 38 px, `5xl` 50 px, `6xl` 64 px, `7xl` 76 px. No asumir los valores por defecto de Tailwind al agregar clases.
+- Ningún texto funcional baja de 11 px. Las etiquetas mono usan siempre 11 px; no hay tamaños de 9 o 10 px.
 
 Reglas:
 
@@ -94,7 +99,7 @@ Grillas:
 ### Hero
 
 - Ocupa la primera pantalla de la home (`min-h` del viewport menos el header).
-- Fondo con la retícula hairline enmascarada en radial (blanco al 4–5 % de opacidad), la misma textura del placeholder de proyecto. Es la única textura del sitio y no debe leerse como imagen.
+- Fondo con la retícula hairline enmascarada en radial (blanco al 3–4 % de opacidad), la misma textura del placeholder de proyecto. Es la única textura del sitio y no debe leerse como imagen ni reducir la legibilidad del texto que tiene encima.
 - `h1` con el nombre de Genaro; debajo, el rol como línea secundaria con punto de acento.
 - Propuesta breve en `muted` con ancho de lectura corto (`max-w-md`).
 - Bloque inferior con borde: CTAs a proyectos y contacto, y stack en mono alineado a la derecha en desktop.

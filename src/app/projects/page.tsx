@@ -33,7 +33,7 @@ export default function ProjectsPage() {
   return (
     <Container className="py-16 md:py-24">
       <header className="max-w-3xl">
-        <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-faint">
+        <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-faint">
           Projects
         </p>
         <h1 className="mt-6 text-balance text-4xl font-medium leading-[1] tracking-[-0.045em] md:text-6xl">

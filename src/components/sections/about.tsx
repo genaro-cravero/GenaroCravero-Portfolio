@@ -11,7 +11,7 @@ export function AboutSection() {
 
         <div className="space-y-8 border-line lg:border-l lg:pl-10">
           <div>
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
               Focus
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-muted">
@@ -22,10 +22,10 @@ export function AboutSection() {
           </div>
 
           <div>
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
               Core stack
             </h3>
-            <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+            <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
               {profile.stack.map((item) => (
                 <li key={item}>{item}</li>
               ))}

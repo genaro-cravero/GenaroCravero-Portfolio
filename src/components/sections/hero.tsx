@@ -16,7 +16,7 @@ export function Hero() {
             <div className="flex flex-col lg:min-w-0 lg:flex-1 lg:pb-16">
               <h1
                 id="hero-heading"
-                className="animate-rise text-balance text-[clamp(2.5rem,6vw,4rem)] font-medium leading-[0.95] tracking-[-0.04em]"
+                className="animate-rise text-balance text-[clamp(2.5rem,6.2vw,4.25rem)] font-medium leading-[0.95] tracking-[-0.04em]"
               >
                 {profile.name}
               </h1>
@@ -38,14 +38,14 @@ export function Hero() {
               aria-hidden="true"
               className="hidden lg:block lg:w-56 lg:shrink-0 lg:border-l lg:border-line lg:pl-6 lg:pt-2"
             >
-              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-faint">
+              <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-faint">
                 Focus
               </p>
               <ul className="mt-4 divide-y divide-line border-t border-line">
                 {profile.focusAreas.map((area) => (
                   <li
                     key={area}
-                    className="py-2.5 font-mono text-[10px] leading-relaxed tracking-[0.06em] text-faint"
+                    className="py-2.5 font-mono text-[11px] leading-relaxed tracking-[0.06em] text-faint"
                   >
                     {area}
                   </li>
@@ -59,7 +59,7 @@ export function Hero() {
               <ArrowLink href="/projects">View selected work</ArrowLink>
               <ArrowLink href="/#contact">Get in touch</ArrowLink>
             </div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
               {profile.stack.join(" · ")}
             </p>
           </div>

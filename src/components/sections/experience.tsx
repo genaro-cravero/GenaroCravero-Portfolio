@@ -15,7 +15,7 @@ export function ExperienceSection() {
             key={`${entry.company}-${entry.role}`}
             className="grid gap-6 border-b border-line py-8 md:grid-cols-[10rem_minmax(0,1fr)] md:gap-12 md:py-10"
           >
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint md:pt-1.5">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-faint md:pt-1.5">
               {formatPeriod(entry)}
             </p>
 
@@ -24,7 +24,7 @@ export function ExperienceSection() {
                 <h3 className="text-lg font-medium tracking-[-0.015em]">
                   {entry.role}
                 </h3>
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-faint">
                   {[entry.company, entry.location].filter(Boolean).join(" · ")}
                 </p>
               </div>
@@ -49,7 +49,7 @@ export function ExperienceSection() {
               </ul>
 
               {entry.tech?.length ? (
-                <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
                   {entry.tech.join(" / ")}
                 </p>
               ) : null}

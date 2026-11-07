@@ -1,7 +1,7 @@
 # MEMORY.md
 
 > Memoria operativa del proyecto. Se actualiza al finalizar cada tarea.
-> Última actualización: 2026-11-06.
+> Última actualización: 2026-11-07.
 
 ## 1. Resumen del estado
 
@@ -66,6 +66,7 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - El negro es el color dominante; el acento es un único tono cálido (`#e2603a`).
 - La estética es minimalista: sin sombras, sin gradientes llamativos, sin animaciones largas, sin UI kits.
 - La única ornamentación admitida es estructural: retícula hairline, marcas de esquina y etiquetas mono. Sin ilustraciones ni imágenes decorativas (2026-11-06).
+- La escala tipográfica de Tailwind está sobreescrita en `@theme` y ningún texto funcional baja de 11 px (2026-11-07).
 - Next.js App Router + TypeScript + Tailwind CSS.
 - Server Components por defecto.
 - Sin dependencias nuevas sin justificación documentada.
@@ -87,6 +88,7 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - QA HTTP: `/` 200, `/projects` 200, detalle 200, slug inexistente 404, ruta inexistente 404, `sitemap.xml` 200, `robots.txt` 200, `opengraph-image` 200 `image/png`.
 - Todos los targets táctiles principales miden al menos 44 px de alto (header, menú mobile, CTAs, footer).
 - QA del hero decorado con Edge/Chrome headless y CDP en 1440, 1280, 1024, 900, 768, 390 y 320 px: sin scroll horizontal, rail visible solo desde `lg`, cruces sin solapar glifos ni capturar clicks, borde del rail alineado al píxel con la regla inferior y `faint` sobre `canvas` en 5.17:1.
+- Escala tipográfica global: `@theme` sobreescribe `text-xs` a `text-7xl` (13, 15, 17, 19, 21, 25, 32, 38, 50, 64 y 76 px) con line-heights emparejados; todas las etiquetas mono usan 11 px. Verificado con Chrome headless/CDP en ocho anchos sobre home, listado, detalle y 404: sin scroll horizontal y sin textos recortados.
 - `.vs/` (índice local de Visual Studio) está en `.gitignore`: Tailwind lo escaneaba como fuente y su archivo bloqueado hacía fallar el build de Turbopack (`os error 32`).
 
 ## 6. Errores y bugs conocidos
@@ -107,6 +109,7 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - Evaluar tests E2E con Playwright si el sitio crece.
 - Evaluar `calc(100svh - 4rem - 1px)` en el hero: hoy mide 1 px más que el viewport porque el header suma su borde inferior.
 - Pulir el stack del hero a 320 px: el separador `·` puede quedar colgando al final de la primera línea.
+- Revisar targets táctiles secundarios del detalle: los chips de links miden 39 px y “Next project” 38 px, por debajo de los 44 px que pide `AGENTS.md` para acciones principales. Es previo al cambio tipográfico.
 - Configurar dominio propio en Vercel.
 
 ## 8. Cambios importantes
@@ -183,13 +186,24 @@ El sitio funciona, pero parte del contenido sigue siendo de ejemplo:
 - Sin dependencias nuevas, sin `"use client"`, sin contenido nuevo ni cambios en `src/content/`.
 - Verificado: `npm run check` y `npm run build` en verde (18 rutas); geometría del rail y la regla coincidiendo al píxel en 1440 y 1024; sin scroll horizontal de 1440 a 320 px.
 
+### 2026-11-07 — Escala tipográfica y retícula
+
+- El dueño reportó que “se pierden algunas letras” y pidió subir todas las tipografías un poco en toda la app y aclarar la retícula del hero.
+- Se actualizó primero `docs/specs/03-diseno.md` §3 (escala y regla de 11 px mínimo) y §5 (opacidad de la retícula).
+- `src/app/globals.css`: el `@theme` sobreescribe la escala de Tailwind (`xs` 13 px, `sm` 15, `base` 17, `lg` 19, `xl` 21, `2xl` 25, `3xl` 32, `4xl` 38, `5xl` 50, `6xl` 64, `7xl` 76) con line-heights emparejados. `.hairline-grid` bajó de 4.5 % a 3.5 % de blanco.
+- 34 etiquetas mono de 9 y 10 px pasaron a 11 px en 16 archivos; no queda ningún texto funcional por debajo de 11 px.
+- Clamps: hero `clamp(2.5rem, 6.2vw, 4.25rem)` y número del placeholder `clamp(3.75rem, 8vw, 6.25rem)`.
+- `opengraph-image.tsx` quedó intacto: es un canvas fijo de 1200×630 y no forma parte de la interfaz.
+- Verificado: `npm run check` y `npm run build` en verde; Chrome headless/CDP en 1440, 1280, 1024, 900, 768, 640, 390 y 320 px sobre home, listado, detalle y 404 sin scroll horizontal ni recortes; rutas y OG image responden 200/404 como antes.
+- Aceptado: a 320 px el `h1` del hero pasa a dos líneas; no hay desborde.
+
 ## 9. Última consulta
 
-- **Fecha:** 2026-11-06.
-- **Pedido:** “No me convence el hero. Agregale unas decoraciones para que no se sienta tan vacío y triste”.
-- **Decisión tomada:** se mantiene la estética minimalista y se admite únicamente decoración estructural (retícula hairline, rail mono de focus areas y marcas de esquina). El dueño eligió esa dirección y la intensidad “muy sutil” sobre dos alternativas.
-- **Resultado:** resuelto. Specs actualizados, hero implementado, QA sin hallazgos P1/P2, `npm run check` y `npm run build` en verde.
-- **Pendiente del usuario:** mirar el resultado en el navegador y confirmar que la intensidad y la altura del rail son las buscadas; ajustar es cambiar opacidades o el ancho del rail. Siguen vigentes los pendientes de contenido e imágenes de la sección 3.
+- **Fecha:** 2026-11-07.
+- **Pedido:** “Se pierden un poco algunas letras. ¿Podrías hacer todas las tipografías un poco más grandes? en toda la app. Y la grilla un poco más transparente”.
+- **Decisión tomada:** se subió la escala tipográfica completa entre 1 y 2 px por paso y se eliminaron los tamaños de 9 y 10 px; la retícula bajó de 4.5 % a 3.5 % de blanco. Ambas decisiones quedaron en `docs/specs/03-diseno.md`.
+- **Resultado:** resuelto. Cambio aplicado en 17 archivos, `npm run check` y `npm run build` en verde, auditoría responsive sin regresiones.
+- **Pendiente del usuario:** confirmar en el navegador que el tamaño y la transparencia son los buscados. Siguen vigentes los pendientes de contenido e imágenes de la sección 3.
 
 ## 10. Cómo actualizar esta memoria
 

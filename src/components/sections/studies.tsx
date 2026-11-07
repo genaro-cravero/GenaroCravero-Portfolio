@@ -15,7 +15,7 @@ function StudyList({
 
   return (
     <div>
-      <h3 className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
+      <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
         {title}
       </h3>
       <ul className="mt-6 border-t border-line">
@@ -41,7 +41,7 @@ function StudyList({
               </h4>
               <p className="mt-1 text-sm text-muted">{item.institution}</p>
             </div>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
               {item.year}
             </span>
           </li>

@@ -14,7 +14,7 @@ import {
 import { ogImage, siteUrl } from "@/lib/site";
 
 const projectLinkClassName =
-  "group inline-flex items-center gap-3 border border-line px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted transition-colors hover:border-line-strong hover:text-ink";
+  "group inline-flex items-center gap-3 border border-line px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors hover:border-line-strong hover:text-ink";
 
 function ProjectLinks({ links }: { links: ProjectLink[] }) {
   return (
@@ -124,7 +124,7 @@ export default async function ProjectPage({
         </ArrowLink>
 
         <header className="mt-12 grid gap-8 border-b border-line pb-12 md:pb-16">
-          <p className="flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
+          <p className="flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
             <span>{project.category}</span>
             <span aria-hidden="true" className="h-px w-5 bg-line-strong" />
             <span>{project.year}</span>
@@ -169,7 +169,7 @@ export default async function ProjectPage({
             <section aria-labelledby="highlights" className="mt-12">
               <h2
                 id="highlights"
-                className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint"
+                className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint"
               >
                 Highlights
               </h2>
@@ -193,14 +193,14 @@ export default async function ProjectPage({
           <aside aria-label="Project details">
             <dl className="grid grid-cols-2 gap-8 lg:grid-cols-1">
               <div>
-                <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-faint">
+                <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
                   Year
                 </dt>
                 <dd className="mt-2 text-sm">{project.year}</dd>
               </div>
 
               <div>
-                <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-faint">
+                <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
                   Role
                 </dt>
                 <dd className="mt-2 text-sm">{project.role}</dd>
@@ -208,7 +208,7 @@ export default async function ProjectPage({
 
               {project.status ? (
                 <div>
-                  <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-faint">
+                  <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
                     Status
                   </dt>
                   <dd className="mt-2 text-sm">{project.status}</dd>
@@ -216,7 +216,7 @@ export default async function ProjectPage({
               ) : null}
 
               <div className="col-span-2 lg:col-span-1">
-                <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-faint">
+                <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
                   Stack
                 </dt>
                 <dd className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
@@ -231,7 +231,7 @@ export default async function ProjectPage({
 
         {nextProject ? (
           <div className="pt-12 md:pt-16">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
               Next project
             </p>
             <Link

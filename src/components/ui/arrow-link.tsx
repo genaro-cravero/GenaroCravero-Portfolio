@@ -17,7 +17,7 @@ export function ArrowLink({
   external = false,
 }: ArrowLinkProps) {
   const classes = cn(
-    "group inline-flex min-h-11 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted transition-colors hover:text-ink",
+    "group inline-flex min-h-11 items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors hover:text-ink",
     className,
   );
 

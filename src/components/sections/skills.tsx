@@ -10,7 +10,7 @@ export function SkillsSection() {
             key={group.title}
             className="grid gap-3 border-b border-line py-6 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-12"
           >
-            <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint md:pt-1">
+            <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-faint md:pt-1">
               {group.title}
             </dt>
             <dd className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">

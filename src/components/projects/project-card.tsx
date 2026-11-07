@@ -24,7 +24,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <h3 className="text-lg font-medium tracking-[-0.015em] transition-colors group-hover:text-accent">
           {project.title}
         </h3>
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
           {project.year}
         </span>
       </div>
@@ -33,7 +33,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         {project.summary}
       </p>
 
-      <p className="mt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
+      <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-faint">
         {project.tech.slice(0, 4).join(" / ")}
       </p>
     </Link>

@@ -37,7 +37,7 @@ export function Section({
           <div>
             <h2
               id={headingId}
-              className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.24em] text-faint"
+              className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-faint"
             >
               <span className="text-accent">{index}</span>
               <span aria-hidden="true" className="h-px w-6 bg-line-strong" />
