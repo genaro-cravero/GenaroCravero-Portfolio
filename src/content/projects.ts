@@ -269,8 +269,50 @@ export const projects = [
     ],
   },
   {
+    slug: "arrowedKnee",
+    title: "Arrowed Knee",
+    cover: {
+        src: "/images/projects/arrowedKnee.png",
+        alt: "Arrowed Knee landing page",
+    },
+    links: [
+      {
+        label: "Page",
+        href: "https://www.arrowedknee.site/",
+      },
+    ],
+    summary:
+      "Web-app made for game progress tracking",
+    category: "Game Development",
+    year: 2026,
+    role: "Game Developer",
+    status: "Finished",
+    featured: true,
+    tech: ["React", "Vercel", "Supabase", "Next.js", "TypeScript"],
+    description: [
+      "A web application desinged for tracking videogame progress with friends",
+    ],
+    highlights: [
+      "Star and review system",
+      "Followers",
+      "Home page with current activity",
+      "Profile",
+      "Profile Pic, Cover and Bio",
+      "Badges system",
+      "Favorite games",
+      "Mark review as spoiler",
+      "Add games to pending",
+      "Special showoff for games completed at 100%",
+      "Notificacions",
+    ],
+  },
+  {
     slug: "portfolio",
     title: "Portfolio",
+      cover: {
+          src: "/images/projects/portfolio.png",
+          alt: "Portfolio landing page",
+      },
     summary:
       "A minimal, content-driven portfolio built with Next.js, TypeScript and Tailwind CSS.",
     category: "Web Development",
