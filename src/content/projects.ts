@@ -269,10 +269,10 @@ export const projects = [
     ],
   },
   {
-    slug: "arrowedKnee",
+    slug: "ak-page",
     title: "Arrowed Knee",
     cover: {
-        src: "/images/projects/arrowedKnee.png",
+        src: "/images/projects/ak-page.png",
         alt: "Arrowed Knee landing page",
     },
     links: [
