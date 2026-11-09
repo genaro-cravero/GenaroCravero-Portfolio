@@ -287,7 +287,7 @@ export const projects = [
     year: 2026,
     role: "Game Developer",
     status: "Finished",
-    featured: true,
+    featured: false,
     tech: ["React", "Vercel", "Supabase", "Next.js", "TypeScript"],
     description: [
       "A web application desinged for tracking videogame progress with friends",
